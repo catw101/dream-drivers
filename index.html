@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<!--Catelen Wu and Daniyah Wong-->
+	<html>
+      <head>
+        <script src = "data.js"></script>
+		<script src = "utility file.js"></script>
+        <script>
+          function initialize()
+          {
+			priceTotal = document.getElementById("price-total");
+			priceTotal.style.display = "none";
+			clearCartButton = document.getElementById("clear-cart");
+			cartHeading = document.getElementById("cart-heading");
+            cart = document.getElementById("cart");
+            cart.innerHTML = "";
+			finalcost = 0;
+			
+			reviewOne = document.getElementById("review1");
+            string = location.search.substring(1);
+			string = string.split("=");
+	
+            daydream = document.getElementById("daydream");
+            nightmare = document.getElementById("nightmare");
+            actionDreams = document.getElementById("action-dreams");
+            fantasyDreams = document.getElementById("fantasy-dreams");
+            mysteryDreams = document.getElementById("mystery-dreams");
+            lucidDreams = document.getElementById("lucid-dreams");
+			recFirst = document.getElementById("rec1");
+			recSec = document.getElementById("rec2");
+			recThird = document.getElementById("rec3");
+			recFourth = document.getElementById("rec4");
+			
+            dreamList = [];
+			index = getRandomInteger(0,5);
+			replaceReview();
+			setupShop();
+			showcart();
+			suggest(index);
+			display(index);
+		  }
+		  function replaceReview()
+		  {
+			reviewOne.innerHTML = "<br/>" + review.value;
+		  }
+          function addToCart()
+		  {
+			cartHeading.style.display = "block";
+			clearCartButton.style.display = "block";
+			cart.style.display = "block";
+			priceTotal.style.display = "block";
+			choicesForC = document.getElementById("choices").value;
+			choicesForC = choicesForC.split(",");
+			nameOfItem = choicesForC[0];
+			priceOfItems = parseInt(choicesForC[1]);
+			numberOfItems = parseInt(document.getElementById("numbers").value);
+			priceOfItems = priceOfItems*numberOfItems;
+			cart.innerHTML += nameOfItem + ": " + document.getElementById("numbers").value + " for " + document.getElementById("time").value + " = $" + priceOfItems + "<br/>";
+			localStorage.setItem("Items", cart.innerHTML);
+			finalcost += priceOfItems;
+			priceTotal.innerHTML = "$" + finalcost;
+			localStorage.setItem("total", priceTotal.innerHTML);
+		  }
+		  function showcart()
+		  {
+			if (cartHeading.style.display == "none")
+			{
+				cartHeading.style.display = "block";
+				clearCartButton.style.display = "block";
+				cart.style.display = "block";
+				priceTotal.style.display = "block";
+			}
+			else 
+			{
+				cartHeading.style.display = "none";
+				clearCartButton.style.display = "none";
+				priceTotal.style.display = "none";
+				cart.style.display = "none";
+			}
+		  }
+		  function clearCart()
+		  {
+			cart.innerHTML = "";
+			clearCartButton.style.display = "none";
+			priceTotal.style.display = "none";
+			cartHeading.style.display = "none";
+			cart.style.display = "none";
+			finalcost = 0;
+			priceTotal.innerHTML = 0;
+			
+		  }
+		  function setupShop()
+          {
+            for(i = 0; i < titles.length; i++)
+            {
+              dream = {};
+              dream.title = titles[i];
+              dream.description = descriptions[i];
+              dream.image = images[i];
+              dream.price = "$" + prices[i];
+              dream.review1 = reviewlist1[i];
+              dream.review2 = reviewlist2[i];
+              dreamList.push(dream);
+            }
+          }
+		  function change(value)
+		  {
+			newnum = value.substr(value.length - 1);
+			display(newnum);
+			suggest(newnum);
+		  }
+		  function suggest(data)
+		  {
+			uindex = 0;
+			list = recommended.split("-");
+			using = list[data].split(",");
+			for(var i = 1;i < 5;i++)
+			{
+				recimgid = "rec" + i;
+				rectitleid = "title" + i;
+				document.getElementById(recimgid).src = dreamList[using[uindex]].image;
+				document.getElementById(rectitleid).innerHTML = dreamList[using[uindex]].title;
+				uindex++;		
+			}
+		  }
+          function display(index)
+          {
+		    document.getElementById("productTitle").innerHTML = dreamList[index].title;
+			document.getElementById(dreamList[index].title).selected = true;
+		    document.getElementById("productImage").src = dreamList[index].image;
+		    document.getElementById("productDescription").innerHTML = dreamList[index].description;
+		    document.getElementById("productPrice").innerHTML = dreamList[index].price;
+		    document.getElementById("review1").innerHTML = dreamList[index].review1;
+		    document.getElementById("review2").innerHTML = dreamList[index].review2;
+          }
+		  function showcart()
+		  {
+			if (cartHeading.style.display == "none")
+			{
+				cartHeading.style.display = "block";
+				clearCartButton.style.display = "block";
+				cart.style.display = "block";
+				priceTotal.style.display = "block";
+			}
+			else 
+			{
+				cartHeading.style.display = "none";
+				clearCartButton.style.display = "none";
+				cart.style.display = "none";
+				priceTotal.style.display = "none";
+			}
+		  }
+        </script>
+        <link rel = "stylesheet" href = "index.css">
+      </head>
+      
+      <body onload = "initialize();">
+        <img src = "banner.jpg" id = "banner" height = "100px" width = "800px" align = "middle"/>
+		<img id = "cartpic" src = "cart.png" onclick = "showcart();"/>
+		<form target = "_blank" action = "destination.html">
+			<button id = "clear-cart" onclick = "clearCart();">Purchase Items</button>
+		</form>
+		<div id = "price-total"></div><br/>
+        <div id = "cart">
+			<div id = "cart-heading"></div>
+		</div>
+		
+		<div id = "Options">
+			<select id = "choices" onchange = "change(this.value)" name = "dream-choices">
+				<option id = "Daydreams" value = "Daydreams, 1000, 0"/>Daydreams<br/>
+				<option id = "Nightmares" value = "Nightmares, 500, 1"/>Nightmares<br/>
+				<option id = "Action Dreams" value = "Action Dreams, 1500, 2"/>Action Dreams<br/>
+				<option id = "Fantasy Dreams" value = "Fantasy Dreams, 2000, 3"/>Fantasy Dreams<br/>
+				<option id = "Mystery Dreams" value = "Mystery Dreams, 2000, 4"/>Mystery Dreams<br/>
+				<option id = "Lucid Dreams" value = "Lucid Dreams, 3000, 5"/>Lucid Dreams<br/>
+			</select>
+			<select id = "numbers" name = "number">
+				<option value = "1">1<br/>
+				<option value = "2">2<br/>
+				<option value = "3">3<br/>
+				<option value = "4">4<br/>
+				<option value = "5">5<br/>
+			</select>
+			<select id = "time" name = "time-length">
+				<option value = "10 min"/>10 min<br/>
+				<option value = "30 min"/>30 min<br/>
+				<option value = "1 hr"/>1 hr<br/>
+				<option value = "5 hr"/>5 hr<br/>
+				<option value = "8 hr"/>8 hr<br/>
+			</select>
+			<button onclick = "addToCart();">Add to Cart</button>
+		</div>
+		
+		<div id = "product">
+			<div id = "productTitle"></div>
+			<img id = "productImage" />
+			<div id = "productDescription"></div>
+			<div id = "productPrice"></div>
+		</div>
+		<br/>
+        
+        <div id = "reviews">
+          <h2>Reviews</h2><hr/>
+          <div id = "review1"></div><br/>
+          <div id = "review2"></div><br/>
+          <img id = "rating" />
+          <textarea id = "review"></textarea><br/>
+		  <button id = "Rev" onclick = "replaceReview();">Add Your Review</button><br/>
+		</div>
+		
+		<div id = "suggestions">
+			<div id = "related">Related Products:</div>
+			<img id = "rec1" width = "200px" height = "50px" onclick = "display(using[0]);suggest(using[0])"/><div id = "title1"></div>
+			<img id = "rec2" width = "200px" height = "50px" onclick = "display(using[1]);suggest(using[1])"/><div id = "title2"></div>
+			<img id = "rec3" width = "200px" height = "50px" onclick = "display(using[2]);suggest(using[2])"/><div id = "title3"></div>
+			<img id = "rec4" width = "200px" height = "50px" onclick = "display(using[3]);suggest(using[3])"/><div id = "title4"></div>
+		</div>
+      </body>
+  </html>

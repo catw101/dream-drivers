@@ -1,0 +1,152 @@
+body
+{
+	background-color:darkblue;
+	font-family:Garamond;
+	overflow-x: hidden;
+}
+
+#banner
+{
+	text-align:center;
+	border:6px solid yellow;
+	border-radius:60px;
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+#productTitle
+{
+	font-size:30px;
+	text-align:center;
+	color:yellow;
+}
+
+#productDescription,#productPrice,#productImage,#rectitle
+{
+	font-size:25px;
+	text-align:center;
+	color:yellow;
+}
+
+#productDescription
+{
+	margin-left: 30%;
+	margin-right: 30%;
+}
+
+#product
+{
+	display:block;
+	display:block;
+	height:30%;
+	font-family:Garamond;
+}
+
+#reviews,#cart
+{
+	color:yellow;
+	font-size:20px;
+	background-color:blueviolet;
+	border:4px solid yellow;
+	border-radius:60px;
+}
+
+#reviews
+{
+	position:absolute;
+	top:20%;
+	margin-right:80%;
+	width:20%;
+	font-size:20px;
+}
+
+#review
+{
+	width:80%;
+	margin-left:10%;
+	font-size:20px;
+}
+
+#cart
+{
+	top:20%;
+	width:20%;
+	padding: 1%;
+	padding-left: 2%;
+	margin-left:70%;
+	font-size:18px;
+	position:absolute;
+}
+
+h2
+{
+	font-size:30px;
+	text-align:center;
+	margin:0;
+	font-family:Garamond;
+}
+
+#Options
+{
+	position:relative;
+	text-align:center;
+	font-size:30px;
+}
+
+button
+{
+	font-family:Garamond;
+	font-weight:bold;
+}
+
+#Rev
+{
+	margin-left:30%;
+}
+
+#cartpic
+{
+	width:5%;
+	margin-left:90%;
+	top:10%;
+	position:absolute;
+}
+
+#price-total
+{
+	margin-left:88%;
+	color:yellow;
+	padding-bottom: 5%;
+}
+
+#clear-cart
+{
+	margin-left:80%;
+	top:15%;
+	position:absolute;
+}
+
+#suggestions
+{
+	text-align:center;
+	color:yellow;
+}
+
+#related
+{
+	font-size: 150%;
+}
+#productImage
+{
+	height:225px;
+	margin-left:30%;
+	margin-right:25%;
+}
+
+#suggestions img
+{
+	background-color:blueviolet;
+	border:4px solid yellow;
+	border-radius:60px;
+}

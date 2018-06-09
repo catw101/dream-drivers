@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!--Catelen Wu-->
+	<html>
+		<head> 
+			<link rel = "stylesheet" href = "index.css">
+			<style>
+				body {
+					font-family: Garamond;
+					text-align: center;
+					color: white;
+					font-size: 200%;
+				}
+				#receipt {
+					font-size: 250%;
+				}
+			</style>
+			<script>
+				function initialize()
+				{
+					document.getElementById("products").innerHTML = localStorage.Items + "<br/>";
+					document.getElementById("total").innerHTML = localStorage.total;
+				}
+			</script>
+		</head>
+		<body onload = "initialize();">
+			<img src = "banner.jpg" id = "banner" height = "80px" width = "800px" align = "middle"/>
+			<div id = "receipt">Receipt:</div>
+			<div id = "products"></div><hr/>
+			<div id = "total"></div>
+		</body>
+	</html>
